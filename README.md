@@ -1,11 +1,16 @@
-# GUPPY - Graph Uncertainty Principle PlaYground
+# Graph Wedgelets for Image Compression
 
-A very simple toolbox to illustrate space-frequency localization and uncertainty principles on graphs
+A simple toolbox to illustrate how graph wedgelets can be used to sparsely approximate images 
 --------------------------------------------------------------------------------
 
-<img src="img/example_guppy.png" width="400"> 
+<img src="img/BWP-eagle.png" width="800"> 
+Fig. 1: Wedgelet compression of images. a) original image with 481 x 321 pixels; 
+	 b)c)d) BWP compression with 1000, 500 and 100 graph wedgelets; 
+	 e)f)g) center nodes for BWP encoding in b)c)d). 
+	 The PSNR values are b) 40.762 dB, c) 37.935 dB, and d) 31.827 dB. 
 
-Version: 0.1 (01.10.2019)
+
+Version: 0.1 (01.10.2021)
 
 Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
 
@@ -14,68 +19,62 @@ Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
 General Description
 -------------------
 
-**GUPPY** contains a simple Matlab implementation for the illustration of uncertainty principles and the space-frequency localization of signals on graphs. 
+This package contains a simple Matlab implementation for the illustration of graph-based wedgelets in image compression. 
 
-Many uncertainty principles on graphs can be described as an admissibility region for the simultaneous space-frequency localization of a graph signal. This localization is determined by a pair (f,g) of filter functions that measures the spatial and spectral localization of the signal. The boundaries of the convex admissibility region describe the limit beyond which a signal can not be localized simulataneously in space and frequency. 
-
-In this package, the admissibility region is calculated as the numerical range of two localization operators linked to the filter pair (f,g). A more precise description of the calculations and the different terminologies can be found in [1]. 
+<a href="http://www.lissajous.it/wedgelets.html"> Graph wedgelets</a> are a tool for lossy data compression based 
+on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) of a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images.
+A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
 
 <br>
 
-<img src="img/SFA_bunny.png" width="800"> 
-Fig. 1 Optimally space-frequency localized signals for four different pairs (f,g) of filter functions on the bunny graph. 
+<img src="img/BWP-church.png" width="800"> 
+Fig. 2: Wedgelet compression of images. a) original image with 481 x 321 pixels; b)c) FA-greedy BWP compression with 2000 and 1000 nodes; d) wavelet details between b) and c); e)f) MD-greedy BWP compression with 2000 and 1000 nodes; g) wavelet details between e) and f).
+
+<br>
+
+
 
 Description of the Code
 -----------------------
 
 The package contains three main parts
 
-- The main folder contains a lot of examples, scripts and demos on how to use the different tools of the package. 
+- The main folder contains three example scripts on how to use the different tools of the package. 
 
-- The subfolder *./core* contains the core code of the package for the generation of the different graphs, the filters and the plots. 
+- The subfolder *./core* contains the core code of the package for wedgelet encoding and decoding of images. 
 
-- The subfolder *./data* contains several *.mat* files with the node information of the example graphs. 
+- The subfolder *./data* contains two example images
 
-The example scripts can be divided into three categories:
-
-- The files of the form **GUP_example_(graph).m** can be used to obtain simple illustrations of the graphs and show how space-frequency decompositions can be calculated and illustrated. 
-
-- In the scripts **GUP_SFA_(graph).m** a more detailed space-frequency analysis is performed for different types of filter pairs (f,g) on a graph. 
-
-- In the scripts of the form **GUP_UP_(graph).m** the shapes of the admissibility regions are plotted for different filter pairs (f,g) on a graph.  
-
-<img src="img/ShapeUP_sensor1.png" width="800"> 
-Fig. 2 Shapes of uncertainty for four different pairs (f,g) of filter functions on a sensor graph. 
 
 Remarks
 --------------------
 
-The main purpose of this code is to obtain nice illustrations of uncertainty curves for graphs of small size. The calculations rely heavily on the graph Fourier transform and are therefore quite expensive if larger spectral decompositions have to be calculated. I didn't optimize the code for speed, so some of the computations will be quite slow for larger graphs. 
-
-Anybody interested in accelerating or refining the actual code is warmly welcome to contribute. The same holds true if anybody is interested in adding new examples and analysis tools.
+The code is at an experimental stage and may contain bugs. The code is also not optimized for speed. 
 
 
 Citation and Credits
 --------------------
 
-This code was developed by Wolfgang Erb at the Dipartimento di Matematica ''Tullio Levi-Civita'', University of Padova. The corresponding theory related to uncertainty principles on graphs is given in
+This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio Levi-Civita'', University of Padova. The corresponding theory related to graph wedgelets can be found in
 
 
 *   [1] &nbsp; Erb, W. <br>
-    <i> Shapes of Uncertainty in Spectral Graph Theory </i> <br>
-    arXiv:1909.10865  [eess.SP] (2019) 
+    <i> Graph Wedgelets: Adaptive Data Compression on Graphs based on Binary
+    Wedge Partitioning Trees and Geometric Wavelets </i> <br>
+    arXiv:2110.08843  [eess.SP] (2021) 
+
+
+Source for the two images: Berkeley Segmentation Data Set 500
 
 <br>
-Source for the Stanford bunny: Stanford
-University Computer Graphics Laboratory.
 
 
 License
 -------
 
-Copyright (C) 2019 Wolfgang Erb
+Copyright (C) 2021 Wolfgang Erb
 
-GUPPY is free software: you can redistribute it and/or modify
+GraphWedgelet is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
