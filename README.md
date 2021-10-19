@@ -1,6 +1,6 @@
 # Graph Wedgelets for Image Compression
 
-A simple toolbox to illustrate how graph wedgelets can be used to sparsely approximate images 
+A simple toolbox to illustrate how graph wedgelets can be used to sparsely approximate and compress images 
 --------------------------------------------------------------------------------
 
 <img src="img/BWP-eagle.png" width="800"> 
@@ -19,11 +19,10 @@ Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
 General Description
 -------------------
 
-This package contains a simple Matlab implementation for the illustration of graph-based wedgelets in image compression. 
+This package contains a Matlab implementation for the illustration of graph-based wedgelets in image approximation and compression. 
 
 <a href="http://www.lissajous.it/wedgelets.html"> Graph wedgelets</a> are a tool for lossy data compression based 
-on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) of a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images.
-A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
+on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) of a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images. A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
 
 <br>
 
@@ -49,18 +48,18 @@ The package contains three main parts
 Remarks
 --------------------
 
-The code is at an experimental stage and may contain bugs. The code is also not optimized for speed. 
+This code is written for educational purposes and is not optimized for speed nor for optimal image storage. 
 
 
 Citation and Credits
 --------------------
 
-This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio Levi-Civita'', University of Padova. The corresponding theory related to graph wedgelets can be found in
+This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio Levi-Civita'', University of Padova. The corresponding theory related to graph wedgelets and data compression can be found in
 
 
 *   [1] &nbsp; Erb, W. <br>
     <i> Graph Wedgelets: Adaptive Data Compression on Graphs based on Binary
-    Wedge Partitioning Trees and Geometric Wavelets </i> <br>
+    Wedge Partitioning Trees and Geometric Wavelets. </i> 
     arXiv:2110.08843  [eess.SP] (2021) 
 
 
@@ -74,7 +73,7 @@ License
 
 Copyright (C) 2021 Wolfgang Erb
 
-GraphWedgelet is free software: you can redistribute it and/or modify
+**GraphWedgelets** is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
