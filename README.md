@@ -63,7 +63,7 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
     arXiv:2110.08843  [eess.SP] (2021) 
 
 
-Source for the two images: Berkeley Segmentation Data Set 500
+Source for the two original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500)
 
 <br>
 
