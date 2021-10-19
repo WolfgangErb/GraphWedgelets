@@ -9,7 +9,7 @@ Fig. 1: Wedgelet compression of images. a) original image with 481 x 321 pixels;
 	 e)f)g) center nodes for BWP encoding in b)c)d). 
 	 The PSNR values are b) 40.762 dB, c) 37.935 dB, and d) 31.827 dB. 
 
-<br><br>
+<br>
 Version: 0.1 (01.10.2021)
 
 Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
