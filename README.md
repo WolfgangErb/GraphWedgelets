@@ -9,6 +9,8 @@ Fig. 1: Wedgelet compression of images. a) original image with 481 x 321 pixels;
 	 e)f)g) center nodes for BWP encoding in b)c)d). 
 	 The PSNR values are b) 40.762 dB, c) 37.935 dB, and d) 31.827 dB. 
 
+<br>
+
 
 Version: 0.1 (01.10.2021)
 
@@ -22,7 +24,7 @@ General Description
 This package contains a Matlab implementation for the illustration of graph-based wedgelets in image approximation and compression. 
 
 <a href="http://www.lissajous.it/wedgelets.html"> Graph wedgelets</a> are a tool for lossy data compression based 
-on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) of a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images. A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
+on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) on a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images. A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
 
 <br>
 
@@ -38,17 +40,17 @@ Description of the Code
 
 The package contains three main parts
 
-- The main folder contains three example scripts on how to use the different tools of the package. 
+- The main folder contains three example scripts on how to calculate and apply the wedgelet decomposition for images. The package works for RGB images as well as for gray-scale images.  
 
 - The subfolder *./core* contains the core code of the package for wedgelet encoding and decoding of images. 
 
-- The subfolder *./data* contains two example images
+- The subfolder *./data* contains two example images from the BSDS500 dataset.
 
 
 Remarks
 --------------------
 
-This code is written for educational purposes and is not optimized for speed nor for optimal image storage. 
+This code is written for educational purposes and is not optimized for speed nor for optimal data storage. 
 
 
 Citation and Credits
