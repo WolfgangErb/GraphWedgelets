@@ -59,7 +59,7 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
 *   [1] &nbsp; Erb, W. <br>
     <i> Graph Wedgelets: Adaptive Data Compression on Graphs based on Binary
     Wedge Partitioning Trees and Geometric Wavelets. </i> 
-    IEEE Trans. Signal Inf. Process. Netw. 9 (2023), 24-34 (2021) 
+    IEEE Trans. Signal Inf. Process. Netw. 9 (2023), 24-34
 
 *   [2] &nbsp; Erb, W. <br>
     <i> Split-and-Merge Segmentation of Biomedical Images Using Graph Wedgelet Decompositions. </i> 
