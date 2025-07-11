@@ -19,10 +19,9 @@ Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
 General Description
 -------------------
 
-This package contains a Matlab implementation for the illustration of graph-based wedgelets in image approximation and compression. 
+This package contains a Matlab implementation for the illustration of graph-based wedgelets in image approximation, compression and segmentation. 
 
-<a href="http://www.lissajous.it/wedgelets.html"> Graph wedgelets</a> are a tool for lossy data compression based 
-on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) on a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression of graph signals and images. A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. 
+<a href="http://www.lissajous.it/wedgelets.html"> Graph wedgelets</a> are a tool for lossy data compression based on the approximation of graph signals by piecewise constant functions on adaptively generated binary wedge partitioning trees (BWP trees) on a graph. Graph wedgelets are discrete variants of continuous wedgelets and binary space partitionings known from image processing. Wedgelet representations of graph signals can be encoded in a simple way by a set of graph nodes and applied easily to the compression and segmentation of graph signals and images. A detailed description of the encoding and decoding of graph signals with wedgelets is given in [1]. An application to image segmentation is presented in [2]. 
 
 <br>
 
@@ -38,7 +37,7 @@ Description of the Code
 
 The package contains three main parts
 
-- The main folder contains six example scripts on how to calculate and apply the wedgelet decomposition for images. The package works for RGB images as well as for gray-scale images.  
+- The main folder contains six example scripts on how to calculate and apply the wedgelet decomposition for images. The package works for RGB images as well as for gray-scale images. In the various examples it is illustrated how graph wedgelets can be used for image approximation and segmentation. 
 
 - The subfolder *./core* contains the core code of the package for wedgelet encoding and decoding of images. 
 
@@ -70,9 +69,7 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
 
 
 
-Source for the original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500), and Kaggle (https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri/).
-
-<br>
+Sources for the original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500), Kaggle (https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri/).
 
 Funding
 -------
