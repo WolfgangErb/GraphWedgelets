@@ -10,7 +10,7 @@ Fig. 1: Wedgelet compression of images. a) original image with 481 x 321 pixels;
 	 The PSNR values are b) 40.762 dB, c) 37.935 dB, and d) 31.827 dB. 
 
 <br><br>
-Version: 0.1 (01.10.2021)
+Version: 0.3 (01.07.2025)
 
 Written by <a href="http://www.lissajous.it"> Wolfgang Erb</a>
 
@@ -79,7 +79,7 @@ the project SID BIRD 2023 entitled "ALISIA-ALgorithms for Immersive Stereoscopic
 Applications to the Daedalus camera system", and by the European Union-NextGenerationEU under the
 National Recovery and Resilience Plan (NRRP), Mission 4 Component 2 Investment 1.1-Call PRIN 2022 No. 
 104 of February 2, 2022 of Italian Ministry of University and Research; Project 2022FHCNY3 (subject 
-area: PE-Physical Sciences and Engi-neering) "Computational mEthods for Medical Imaging (CEMI)".
+area: PE-Physical Sciences and Engineering) "Computational mEthods for Medical Imaging (CEMI)".
 
 <br>
 
