@@ -38,11 +38,11 @@ Description of the Code
 
 The package contains three main parts
 
-- The main folder contains three example scripts on how to calculate and apply the wedgelet decomposition for images. The package works for RGB images as well as for gray-scale images.  
+- The main folder contains six example scripts on how to calculate and apply the wedgelet decomposition for images. The package works for RGB images as well as for gray-scale images.  
 
 - The subfolder *./core* contains the core code of the package for wedgelet encoding and decoding of images. 
 
-- The subfolder *./data* contains two example images from the BSDS500 dataset.
+- The subfolder *./data* contains two example images from the BSDS500 dataset and one example from Kaggle.
 
 
 Remarks
@@ -60,7 +60,7 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
 *   [1] &nbsp; Erb, W. <br>
     <i> Graph Wedgelets: Adaptive Data Compression on Graphs based on Binary
     Wedge Partitioning Trees and Geometric Wavelets. </i> 
-    arXiv:2110.08843  [eess.SP] (2021) 
+    IEEE Trans. Signal Inf. Process. Netw. 9 (2023), 24-34 (2021) 
 
 *   [2] &nbsp; Erb, W. <br>
     <i> Split-and-Merge Segmentation of Biomedical Images Using Graph Wedgelet Decompositions. </i> 
@@ -73,6 +73,19 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
 Source for the original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500), and Kaggle (https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri/).
 
 <br>
+
+Funding
+-------
+
+This project is funded by the Universit&agrave; degli Studi di Padova - Dipartimento di Matematica under 
+the project SID BIRD 2023 entitled "ALISIA-ALgorithms for Immersive Stereoscopic Imaging with 
+Applications to the Daedalus camera system", and by the European Union-NextGenerationEU under the
+National Recovery and Resilience Plan (NRRP), Mission 4 Component 2 Investment 1.1-Call PRIN 2022 No. 
+104 of February 2, 2022 of Italian Ministry of University and Research; Project 2022FHCNY3 (subject 
+area: PE-Physical Sciences and Engi-neering) "Computational mEthods for Medical Imaging (CEMI)".
+
+<br>
+
 
 
 License
