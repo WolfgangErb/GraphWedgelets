@@ -62,8 +62,15 @@ This code was written by Wolfgang Erb at the Dipartimento di Matematica ''Tullio
     Wedge Partitioning Trees and Geometric Wavelets. </i> 
     arXiv:2110.08843  [eess.SP] (2021) 
 
+*   [2] &nbsp; Erb, W. <br>
+    <i> Split-and-Merge Segmentation of Biomedical Images Using Graph Wedgelet Decompositions. </i> 
+    In: Gervasi, O., et al. Computational Science and Its Applications - ICCSA 2025 Workshops, ICCSA 2025, Istanbul, Turkey. Lecture Notes in Computer Science, vol 15899. Springer, Cham (2026), 252-263
 
-Source for the two original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500)
+
+
+
+
+Source for the original images: Berkeley Segmentation Data Set and Benchmarks 500 (BSDS500), and Kaggle (https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri/).
 
 <br>
 
@@ -71,7 +78,7 @@ Source for the two original images: Berkeley Segmentation Data Set and Benchmark
 License
 -------
 
-Copyright (C) 2021 Wolfgang Erb
+Copyright (C) 2021, 2025 Wolfgang Erb
 
 **GraphWedgelets** is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
