@@ -1,87 +1,94 @@
 % GWI: Graph Wedgelets for Image compression
-% (C) W. Erb 01.10.2021
+% (C) W. Erb 01.7.2025
 
-function [idxQ,FidxQ,cidxQ,nidxQ,BWPM,m,error] = GWI_wedgelet_encode(V,f,idxQ,FidxQ,cidxQ,nidxQ,BWPM,m,error,MM,RR,tol,metric)
+function BWP = GWI_wedgelet_encode(V,f,BWP,M,R,tol,metric)
 % Main routine for wedgelet approximation on BWP trees:
 % In:
 %    V              = set of nodes
 %    f              = function on nodes
-%    idxQ           = initial indices of center nodes
-%    FidxQ          = initial mean function values
-%    cidxQ          = initial gemetric wavelet coefficients (JJ)
-%    nidxQ          = initial size of sets in BWP tree
-%    BWPM           = initial partition of V 
-%    m              = initial size of partition
-%    error          = initial mse for sets in partition
-%    MM             = maximal partition size (number of leaves in BWP tree)
-%    RR             = Parameter for greedy method:
+%    BWP            = Binary Wedge Partitioning Tree containing
+%       Q           = initial indices of center nodes
+%       F           = initial mean function values
+%       c           = initial gemetric wavelet coefficients (JJ)
+%       n           = initial size of sets in BWP tree
+%       p           = initial partition of V 
+%       m           = initial size of partition
+%       error       = initial mse for sets in partition
+%    M              = maximal partition size (number of leaves in BWP tree)
+%    R              = Parameter for greedy method:
 %                     'MD': Max-Distance greedy
 %                     'FA': Fully-Adaptive greedy
-%                     otherwise: number of randomized splits for R-greedy
+%                     'KC': K-center, with R.val centers
+%                     'RA': Random, with R.val centers
 %    tol            = stop partitioning if max(error) < tol is 
 %    metric         = applied distance metric (1,2, or 'inf')
 % Out:
-%    idxQ           = indices of center nodes for final wedgelet partition
-%    FidxQ          = mean function values for final wedgelet partition
-%    cidxQ          = gemetric wavelet coefficients in BWP tree (2m-1)
-%    nidxQ          = size of sets in BWP tree
-%    BWPM           = final partition of V (m elements)
-%    m              = size of final partition
-%    error          = mse for sets in final partition
+%    BWP            = Binary Wedge Partitioning Tree containing
+%       Q           = indices of center nodes for final wedgelet partition
+%       F           = mean function values for final wedgelet partition
+%       c           = geometric wavelet coefficients in BWP tree (2m-1)
+%       n           = size of sets in BWP tree
+%       p           = final partition of V (m elements)
+%       m           = size of final partition
+%       error       = mse for sets in final partition
 
-N = length(f);
+n = length(f);      % length of signal
+m = BWP.m;          % initial partition size
 
 tic;
-[errorj,idxj] = max(error); 
+[errorj,j] = max(BWP.error); 
 
-while (errorj > tol) && (m < MM)
-       idxQ(m+1,2) = idxj;
-       Fidxj = FidxQ(idxj,:);
-       indsub = BWPM{idxj};
-       idxqsub = find(indsub == idxQ(idxj,1));
-       
-       nodes = V(indsub,:);
-       
-       if (RR=='FA')
-           MC = length(indsub);
-           idxpsub = 1:MC;
-       elseif (RR=='MD')
-           MC = 1;
-           dist = GWI_distcenter(nodes,idxqsub,metric);
-           [~,idxpsub] = max(dist);
-       else
-           MC = min(RR,length(indsub));
-           idxpsub = randsample(length(indsub),MC);
+while (errorj > tol) && (m < M)
+       BWP.Q(m+1,2) = j;
+       Fj = BWP.F(j,:);
+       Pj = BWP.P{j};
+       Vj = V(Pj,:);
+       qj = find(Pj == BWP.Q(j,1));       
+      
+       if (R.type=='FA')
+           S = length(Pj);
+           pj = 1:S;
+       elseif (R.type=='MD')
+           S = 1;
+           dist = GWI_distcenter(Vj,qj,metric);
+           [~,pj] = max(dist);
+       elseif (R.type=='KC')
+           S = min(R.val,length(Pj));
+           [~,pj] = GWI_Jcenters(Vj,R.val,1:length(Pj),qj,metric);
+       elseif (R.type=='RA')
+           rng(1,"twister");
+           S = min(R.val,length(Pj));
+           pj = randsample(length(Pj),S);
        end
     
-       for i = 1:MC
+       for i = 1:S
       
-         cluster = GWI_wedgesplit(nodes,idxpsub(i),idxqsub,metric);
+         cluster = GWI_wedgesplit(Vj,pj(i),qj,metric);
        
-         idx1 = indsub(cluster==1);
-         idx2 = indsub(cluster==2);
-         error1 = norm(f(idx1,:) - ones(length(idx1),1)*mean(f(idx1,:),1),'fro')^2/N/size(f,2);
-         error2 = norm(f(idx2,:) - ones(length(idx2),1)*mean(f(idx2,:),1),'fro')^2/N/size(f,2);
+         idx1 = Pj(cluster==1);
+         idx2 = Pj(cluster==2);
+         error1 = norm(f(idx1,:) - ones(length(idx1),1)*mean(f(idx1,:),1),'fro')^2/n/size(f,2);
+         error2 = norm(f(idx2,:) - ones(length(idx2),1)*mean(f(idx2,:),1),'fro')^2/n/size(f,2);
          errornew = error1 + error2;
 
          if errornew <= errorj
-           idxQ(idxj,1) = indsub(idxqsub);
-           idxQ(m+1,1) = indsub(idxpsub(i));
+           BWP.Q(j,1) = Pj(qj);
+           BWP.Q(m+1,1) = Pj(pj(i));
     
-           BWPM{idxj} = idx1;
-           BWPM{m+1} = idx2;
-           FidxQ(idxj,:) = mean(f(idx1,:),1);
-           FidxQ(m+1,:) = mean(f(idx2,:),1);
-           cidxQ(m+1,1:size(f,2)) = FidxQ(idxj,:)-Fidxj;
-           cidxQ(m+1,size(f,2)+1:end) = FidxQ(m+1,:)-Fidxj;
-           nidxQ(m+1,1) = length(idx1);
-           nidxQ(m+1,2) = length(idx2);
-           error(idxj) = error1;
-           error(m+1) = error2;
+           BWP.P{j} = idx1;
+           BWP.P{m+1} = idx2;
+           BWP.F(j,:) = mean(f(idx1,:),1);
+           BWP.F(m+1,:) = mean(f(idx2,:),1);
+           BWP.c(m+1,1:size(f,2)) = BWP.F(j,:)-Fj;
+           BWP.c(m+1,size(f,2)+1:end) = BWP.F(m+1,:)-Fj;
+           BWP.n(m+1,1) = length(idx1);
+           BWP.n(m+1,2) = length(idx2);
+           BWP.error(j) = error1;
+           BWP.error(m+1) = error2;
            errorj = errornew;
          end      
        end
-       [errorj,idxj] = max(error);
+       [errorj,j] = max(BWP.error);
        m = m + 1;
       
        if (mod(m,100)==0)
@@ -90,11 +97,13 @@ while (errorj > tol) && (m < MM)
        end
 end
 
-idxQ = idxQ(1:m,:); 
-FidxQ = FidxQ(1:m,:);
-cidxQ = cidxQ(1:m,:);
-nidxQ = nidxQ(1:m,:);
-error = error(1:m); 
-BWPM = BWPM(1:m);
+% Restrict final output
+BWP.Q = BWP.Q(1:m,:); 
+BWP.F = BWP.F(1:m,:);
+BWP.c = BWP.c(1:m,:);
+BWP.n = BWP.n(1:m,:);
+BWP.error = BWP.error(1:m); 
+BWP.P = BWP.P(1:m);
+BWP.m = m;
 
 end

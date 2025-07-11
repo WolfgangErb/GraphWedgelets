@@ -1,16 +1,16 @@
 % GWI: Graph Wedgelets for Image compression
-% (C) W. Erb 01.10.2021
+% (C) W. Erb 01.07.2025
 
-function cluster = GWI_wedgesplit(V,idxP,idxQ,metric)
+function cluster = GWI_wedgesplit(V,p,q,metric)
 
 % Performs an elementary wedge split and finds 
 % a partition of V into two subsets according to the minimum
-% distance to the center nodes V(Pidx) and V(Qidx).    
+% distance to the center nodes V(p) and V(q).    
 
 % In:
 %    V         = set of nodes
-%    idxP      = index of new node
-%    idxQ      = index of reference node
+%    p         = index of new node
+%    q         = index of reference node
 %    metric    = type of metric (1,2 or 'inf')
 %
 % Out:
@@ -25,8 +25,8 @@ function cluster = GWI_wedgesplit(V,idxP,idxQ,metric)
 N = size(V,1);
 D = zeros(N,2);
 
-D(:,1) = GWI_distcenter(V,idxQ,metric);
-D(:,2) = GWI_distcenter(V,idxP,metric);
+D(:,1) = GWI_distcenter(V,q,metric);
+D(:,2) = GWI_distcenter(V,p,metric);
 
 [~,cluster] = min(D,[],2);
 

@@ -1,5 +1,5 @@
 % GWI: Graph Wedgelets for Image compression
-% (C) W. Erb 01.10.2021
+% (C) W. Erb 01.07.2025
 
 function [V,f,dimIx,dimIy] = GWI_im2sig(I)
 % Transforms image to a graph signal

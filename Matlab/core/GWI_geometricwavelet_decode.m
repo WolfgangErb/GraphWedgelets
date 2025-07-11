@@ -1,52 +1,52 @@
 % GWI: Graph Wedgelets for Image compression
-% (C) W. Erb 01.10.2021
+% (C) W. Erb 01.07.2025
 
-function [s,BWPM] = GWI_geometricwavelet_decode(V,idxQ,cidxQ,BWPM,JJ,MM,metric)
+function [s,P] = GWI_geometricwavelet_decode(V,Q,c,BWPJ,metric)
 % Routine for wedgelet decoding via geometric wavelet coefficients
 % In:
 %    V              = set of nodes
-%    idxQ           = center nodes characterizing BWP tree
-%    cidxQ          = gemetric wavelet coefficients for BWP tree
-%    BWPM           = initially given partition of V
-%    JJ             = initial size of partition
-%    MM             = level for wedgelet reconstruction (>= JJ)
+%    Q              = center nodes characterizing BWP tree with M leaves
+%    c              = gemetric wavelet coefficients for BWP tree
+%    BWPJ           = BWP initialization
 %    metric         = applied distance metric (1,2, or 'inf')
 % Out:
-%    s              = decoded signal at level MM
-%    BWPM           = partition at level MM
+%    s              = decoded signal at level M
+%    P              = partition at level M
 
-MM = min(MM,size(idxQ,1));
-fdim = size(cidxQ,2)/2;
-FidxQ = zeros(MM,fdim);
-FidxQ(1:JJ,:) = cidxQ(1:JJ,1:fdim);
+M = size(Q,1);         % final partition size
+J = BWPJ.m;            % initial partition size
+P = BWPJ.P;            % initial partitioning
+fdim = size(c,2)/2;
+F = zeros(M,fdim);
+F(1:J,:) = c(1:J,1:fdim);
 
 % Generate BWP tree and corresponding mean values
-for m = JJ+1:MM
-       idxj = idxQ(m,2);
-       indsub = BWPM{idxj};
-       idxh1 = find(indsub == idxQ(m,1));
-       idxh2 = find(indsub == idxQ(idxj,1));
+for m = J+1:M
+       j = Q(m,2);
+       Pj = P{j};
+       idxh1 = find(Pj == Q(m,1));
+       idxh2 = find(Pj == Q(j,1));
        
-       nodes = V(indsub,:);
+       Vj = V(Pj,:);
        
-       cluster = GWI_wedgesplit(nodes,idxh1,idxh2,metric);
+       cluster = GWI_wedgesplit(Vj,idxh1,idxh2,metric);
        
-       idx1 = indsub(cluster==1);
-       idx2 = indsub(cluster==2);
+       idx1 = Pj(cluster==1);
+       idx2 = Pj(cluster==2);
        
-       FidxQ(m,:) = FidxQ(idxj,:)+cidxQ(m,fdim+1:end);
-       FidxQ(idxj,:) = FidxQ(idxj,:) + cidxQ(m,1:fdim);
+       F(m,:) = F(j,:) + c(m,fdim+1:end);
+       F(j,:) = F(j,:) + c(m,1:fdim);
        
-       BWPM{idxj} = idx1;
-       BWPM{m} = idx2;      
+       P{j} = idx1;
+       P{m} = idx2;      
 end
 
 %Decode signal
 dimI = length(V(:,1));
-s = zeros(dimI,size(FidxQ,2));
+s = zeros(dimI,fdim);
 
-for m = 1:MM
-    s(BWPM{m},:) = ones(length(BWPM{m}),1)*FidxQ(m,:);
+for m = 1:M
+    s(P{m},:) = ones(length(P{m}),1)*F(m,:);
 end
 
 end
